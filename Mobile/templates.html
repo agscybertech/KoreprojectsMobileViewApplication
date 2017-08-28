@@ -1,0 +1,473 @@
+<!-- ******************************************************************************************* -->
+
+
+<script type="text/ng-template" id="mainmenu.html">
+    <div class="container" id="mainmenu" ng-controller="MainMenuCtrl" ng-class="{open:state=='open', close:state=='close'}">
+		<div class="row">
+			<!--<div class="col-xs-12 text-center">
+				<a href="#" class="message-box"><img src="../images/envelopeicon.png" alt="user icon"><span>4</span>New massage</a>
+			</div>	-->
+			<div class="col-xs-6">
+				<a ng-click="goTo('jobs')" class="job-box">
+					<div class="box_inner">
+						<figure class="center-block">
+							<img src="../images/jobicon.png" alt="Job" class="img-responsive" width="48" height="41">
+						</figure>
+						<h3>Job</h3>
+					</div>		
+				</a>
+			</div>
+			<div class="col-xs-6">
+				<a ng-click="goTo('timesheet')" class="timesheet-box">
+					<div class="box_inner">
+						<figure class="center-block">
+							<img src="../images/timesheet.png" alt="TimeSheet" class="img-responsive" width="43" height="44">
+						</figure>
+						<h3>TimeSheet</h3>	
+					</div>
+				</a>
+			</div>
+			<div class="col-xs-6">
+				<a ng-click="goTo('reorder')" class="reoder-box">
+					<div class="box_inner">
+						<figure class="center-block">
+							<img src="../images/reorder.png" alt="Reorder" class="img-responsive" width="39" height="41">
+						</figure>
+						<h3>Reorder</h3>
+					</div>
+				</a>
+			</div>
+			<div class="col-xs-6">
+				<a ng-click="goTo('photos')" class="photo-box">
+					<div class="box_inner">
+						<figure class="center-block">
+							<img src="../images/img-icon.png" alt="Photos" class="img-responsive" width="43" height="44">
+						</figure>
+						<h3 class="photo-head">Photos</h3>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</script>
+
+
+<!-- ******************************************************************************************* -->
+
+
+<script type="text/ng-template" id="messages.html">
+	<footer class="footer" id="messages" ng-class="{open:toggle, write:writeMode, process:process}">
+		<h2>From: {{getMsgFrom()}}</h2>
+		<p>{{getMsg()}}</p>
+		<nav>
+			<a class="btn new" ng-click="writeMsg()"><i class="icon-plus"></i>NEW</a>
+			<a class="btn arrow" ng-class="{hide:toggle}" ng-click="next()"><i class="icon-chevron-right"></i></a>
+			<a class="btn" ng-class="{hide:toggle}" ng-click="toggle=!toggle"><i class="icon-caret-up"></i>OPEN</a>
+			<a class="btn" ng-class="{hide:!toggle}" ng-click="toggle=!toggle"><i class="icon-caret-down"></i>CLOSE</a>
+			<a class="btn" ng-class="{hide:!toggle}" ng-click="deleteMsg()"><i class="icon-trash"></i>DELETE</a>
+			<a class="btn" ng-class="{hide:!toggle}" ng-click="replyMsg()"><i class="icon-reply"></i>REPLY</a>
+			<a class="btn arrow" ng-class="{hide:toggle}" ng-click="prev()"><i class="icon-chevron-left"></i></a>
+		</nav>
+	</footer>
+</script>
+
+
+<!-- ******************************************************************************************* -->
+
+
+<script type="text/ng-template" id="sending.html">
+    <div class="container" id="sending" ng-controller="SendingCtrl" ng-class="{open:state=='open', close:state=='close', process:process, finish:finish}">
+		<div class="job-details">
+            <label>Name</label>        
+            <select class="writeMode" ng-hide="reply" ng-model="sendingTo">
+			    <option>Jimi Hendrix</option>
+			    <option>Louis Armstrong</option>
+			    <option>Jim Morrison</option>
+			    <option>Luciano Pavarotti</option>
+		    </select>
+            <input type="text" readonly value="To: {{sendingTo}}" ng-hide="!reply">
+			<label>Message</label>
+            <textarea ng-model="textMsg" placeholder="Enter message here..."></textarea>
+            <h1 class="appmsg" ng-hide="!finish">{{msg}}</h1>
+			<div class="row">
+				<div class="col-xs-6"><a class="cancel right" ng-click="goTo('')">Cancel</a></div>
+				<div class="col-xs-6"><a class="update left" ng-click="sendMsg()">Send</a></div>
+			</div>
+		</div>	
+	</div>
+</script>
+
+
+<!-- ******************************************************************************************* -->
+
+
+<script type="text/ng-template" id="timesheet.html">
+     <div id="timesheet" ng-controller="TimeSheetCtrl" ng-class="{open:state=='open', close:state=='close'}"  data-ng-show="loaded">
+        <div class="job-details">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="name">Project Job</label>
+                    <select ng-options="s.ID as s.Name for s in Jobs" ng-model="ModJobs" ng-change="OnJobChange()">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" ng-show="!IsJobSelected">
+                <div class="col-sm-12 text-center">
+                    <div class="alert alert-info fade in"><strong>Info!</strong> You have to select project job to add time sheet entries.</div>
+                </div>
+            </div>
+            <div class="row" ng-show="IsJobSelected">
+                <div class="col-xs-4"><a class="arrow pull-left" ng-click="getPrevWeek()"><i class="glyphicon glyphicon-chevron-left"></i></a></div>
+                <div class="col-xs-4"><h5 class="pay_detail">Pay Day: {{getNextPayday}}</h5></div>
+                <div class="col-xs-4"><a class="arrow pull-right" ng-click="getNextWeek()"><i class="glyphicon glyphicon-chevron-right"></i></a></div>
+            </div>
+            <table class="table timer_table" ng-show="IsJobSelected">
+                <tr>
+                    <th>Day</th>
+                    <th>Hours</th>
+                    <th ng-show="closed == 'false'">Edit</th>
+                </tr>
+				<tr>
+				    <td>{{day[0].name +' '+ day[0].date}}</td>
+				    <td>{{day[0].value}}</td>
+				    <td ng-show="closed == 'false'"><a ng-show="day[0].isValidDate == 'true'" class="timer_edit" ng-click="goTo('timesheet-edit/' + ModJobs + '/'+0);"><img src="../images/edit-icon.png" width="17" height="16" alt="Edit" /></a></td>
+			    </tr>
+			    <tr>
+				    <td>{{day[1].name +' '+ day[1].date}}</td>
+				    <td>{{day[1].value}}</td>
+				    <td ng-show="closed == 'false'"><a ng-show="day[1].isValidDate == 'true'" class="timer_edit" ng-click="goTo('timesheet-edit/' + ModJobs + '/'+1);"><img src="../images/edit-icon.png" width="17" height="16" alt="Edit" /></a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>{{day[2].name +' '+ day[2].date}}</td>
+				    <td>{{day[2].value}}</td>
+				    <td ng-show="closed == 'false'"><a ng-show="day[2].isValidDate == 'true'" class="timer_edit" ng-click="goTo('timesheet-edit/' + ModJobs + '/'+2);"><img src="../images/edit-icon.png" width="17" height="16" alt="Edit" /></a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>{{day[3].name +' '+ day[3].date}}</td>
+				    <td>{{day[3].value}}</td>
+				    <td ng-show="closed == 'false'"><a ng-show="day[3].isValidDate == 'true'" class="timer_edit" ng-click="goTo('timesheet-edit/' + ModJobs + '/'+3);"><img src="../images/edit-icon.png" width="17" height="16" alt="Edit" /></a></td>
+			    </tr>
+			    <tr>
+				    <td>{{day[4].name +' '+ day[4].date}}</td>
+				    <td>{{day[4].value}}</td>
+				    <td ng-show="closed == 'false'"><a ng-show="day[4].isValidDate == 'true'" class="timer_edit" ng-click="goTo('timesheet-edit/' + ModJobs + '/'+4);"><img src="../images/edit-icon.png" width="17" height="16" alt="Edit" /></a></td>
+			    </tr>
+			    <tr>
+				    <td>{{day[5].name +' '+ day[5].date}}</td>
+				    <td>{{day[5].value}}</td>
+				    <td ng-show="closed == 'false'"><a ng-show="day[5].isValidDate == 'true'" class="timer_edit" ng-click="goTo('timesheet-edit/' + ModJobs + '/'+5);"><img src="../images/edit-icon.png" width="17" height="16" alt="Edit" /></a></td>
+			    </tr>
+			    <tr>
+				    <td>{{day[6].name +' '+ day[6].date}}</td>
+				    <td>{{day[6].value}}</td>
+				    <td ng-show="closed == 'false'"><a ng-show="day[6].isValidDate == 'true'" class="timer_edit" ng-click="goTo('timesheet-edit/' + ModJobs + '/'+6);"><img src="../images/edit-icon.png" width="17" height="16" alt="Edit" /></a></td>
+			    </tr>
+			    <tr class="total">
+				    <td>WEEK TOTAL</td>
+				    <td>{{ getTotalHours()}}
+				    </td>
+				    <td ng-show="closed == 'false'"></td>
+			    </tr>
+			</table>
+        </div>
+    </div>
+</script>
+
+
+<!-- ******************************************************************************************* -->
+
+<script type="text/ng-template" id="timesheet-edit.html">
+    <div id="timesheet" ng-controller="TimeSheetEditCtrl" ng-class="{open:state=='open', close:state=='close'}">
+        <div class="job-details">
+            <label>Start Work</label>
+			<input type="text" placeholder="Start Work" ng-model="start" class="datetimepicker" />
+			<label>Start Lunch</label>
+			<input type="text" placeholder="Start Lunch" ng-model="startLunch" class="datetimepicker" />
+			<label>Finish Lunch</label>
+			<input type="text" placeholder="Finish Lunch" ng-model="finishLunch" class="datetimepicker" />
+			<label>Finish Work</label>
+			<input type="text" placeholder="Finish Work" ng-model="finish" class="datetimepicker" />
+			<h2>Totle Hours: {{getTotal()}}</h2> 
+			<label for="title">Description</label>
+			<textarea placeholder="Enter Description here..."  ng-model="Description"></textarea>
+						
+			<div class="row">
+                <div class="col-xs-6">
+                    <a type="button" class="cancel" value="Delete" ng-click="DeleteTimesheetEntry()">Reset</a>
+                </div>
+				<div class="col-xs-6">
+                    <a type="button" class="update" value="Done" ng-click="OnClickGreetingsAJ()">Done</a>
+                </div>
+			</div>
+        </div>
+    </div>
+</script>
+
+
+<!-- ******************************************************************************************* -->
+
+
+<script type="text/ng-template" id="jobs.html">
+    <div id="jobs" ng-controller="JobsCtrl" ng-class="{open:state=='open', close:state=='close'}">
+        <div class="job-details" ng-show="isVisible">
+            <label for="name">Project Owner</label>
+            <select ng-options="s.ID as s.Name for s in ProjectOwners" ng-model="ModProjectOwners" ng-change="GetProjectGroups()" required>
+                <option value="">--Select--</option>
+            </select>
+            <label for="name">Project Group</label>
+            <select ng-options="s.ID as s.Name for s in ProjectGroups" ng-model="ModProjectGroups" ng-change="GetProject()">
+                <option value="">--Select--</option>
+            </select>
+             <label for="name">Project</label>
+            <select ng-options="s.ID as s.Name for s in Project" ng-model="ModProjects" >
+                <option value="">--Select--</option>
+            </select>
+            <div class="row">
+				<div class="col-xs-6"><a ng-click="goTo('');" class="cancel">Cancel</a></div>
+				<div class="col-xs-6"><a ng-click="GetJob()" class="update">Update</a></div>
+			</div>
+        </div>
+        <div class="job-details" ng-show="isJobSheetVisible">
+            <label for="name">Project Job</label>
+            <select ng-options="s.ID as s.Name for s in Jobs" ng-model="ModJobs" ng-change="OnClickGetJob()">
+                <option value="">--Select--</option>
+            </select>
+            <div ng-show="isJobSheetDeailVisible">
+                <a ng-repeat="item in jobSheet" ng-if="$last">
+                    <h2>Job Details</h2>
+                    <label for="title">Title (Project)</label>
+                    <input type="text" value={{item.NewTitle}} readonly>
+                    <label for="name">Customer Name</label>
+                    <input type="text" value={{item.CustomerName}} readonly>
+                    <label for="address">Address</label>
+                    <input type="text" value={{item.Address}} readonly>
+                    <label for="mobile">Mobile</label>
+                    <input type="text" value={{item.NewMobile}} readonly>
+                    <label for="foremanonsite">Forman onsite</label>
+                    <input type="text" value={{item.NewForemanOnsite}} readonly>
+                    <label for="duedate">Due Date</label>
+                    <input type="text" value={{item.DueDate}} readonly>
+                </a>
+                <label for="name">Note</label>
+                <textarea rows="3" value={{item.Note}} ng-model="JobNote"></textarea>
+                <label for="name">Status</label>
+                <select ng-options="s.ID as s.Name for s in JobStatus" ng-model="ModJobStatus">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+            <div class="row">
+				<div class="col-xs-6"><a class="cancel" ng-show="isSubmitVisible" ng-click="goTo('');">Cancel</a></div>
+				<div class="col-xs-6"><a class="update" ng-click="UpdateJobStatus()" ng-show="isSubmitVisible">Update</a></div>
+			</div>
+        </div>
+        
+    </div>
+</script>
+
+<script type="text/ng-template" id="jobSheet.html">
+	<section id="jobs" ng-controller="JobsCtrl" ng-class="{open:state=='open', close:state=='close'}">
+
+    
+    <select ng-options="s.Jobid as s.JobName for s in jobSheet" ng-model="ModProjectGroups1">
+            <option value="">--Select--</option>
+    </select>
+
+  <!--  <table>
+            <tr>
+                <td>Id</td>
+                <td>Job Name</td>
+                <td>Description</td>
+            </tr>
+            <tr ng-repeat="Sheet in jobSheet">
+                <td>{{Sheet.Jobid}}</td>
+                <td>{{Sheet.JobName}}</td>
+                <td>{{Sheet.Description}}</td>
+            </tr>
+        </table>-->
+
+    
+
+	</section>
+</script>
+
+<script type="text/ng-template" id="Script1">
+	<section id="jobs" ng-controller="JobsCtrl" ng-class="{open:state=='open', close:state=='close'}">
+
+   <!-- <select><option data-ng-repeat="t in sample" value="{{t.ID}}"> {{t.Name}}</option> </select>-->
+   
+    Select Name: <select ng-options="s.ID as s.Name for s in sample" ng-model="col">
+    <option value="">--Select--</option>
+    </select>
+
+   <!-- Select Color:  
+      <select >  
+<option data-ng-repeat="t in Color" value="{{t.id}}">{{t.name}}</option>  
+</select> -->
+
+  
+		<!--<h1>{{appName}}</h1>-->
+       <!-- <input type="email" name="email" ng-model="email" required />
+            <span class="help-inline" ng-show="jobs.email.$error.required">Required</span>
+            <span class="help-inline" ng-show="jobs.email.$error.email">Invalid email</span>-->
+
+ 
+<div id="new_line">
+     <div class="formElement">
+    <label for="name">Customer Name</label>
+            <input ng-model="CustomerName" type="text" placeholder="Customer Name" required>
+ </div>
+    </div>
+ 
+ <div class="formElement">
+    <label for="name">Address</label>
+            <input ng-model="Address" type="text" placeholder="Address" required>
+   
+     </div>
+    <div class="formElement">
+    <label for="name">Forman onsite</label>
+            <input ng-model="FormanOnsite" type="text" placeholder="Forman onsite" required>
+    </div>
+
+
+    <div class="formElement">
+    <label for="name">Phone</label>
+            <input ng-model="PhoneNo" type="text" placeholder="Phone"  required>
+    </div>
+
+    <div class="formElement">
+    <label for="name">Date</label>
+            <input ng-model="JobDate" type="text" placeholder="Date"  required>
+    </div>
+
+
+    <div class="formElement">
+    <label for="name">Description</label>
+            <input ng-model="JobDescription" type="text" placeholder="Description" required>
+    </div>
+
+    <div class="formElement">
+    <label for="name">Photo</label>
+            <input type="file" id="uploadBtn" ngf-select ng-model="picFile" name="file" multiple accept="image/*" ngf-max-size="2MB" required
+
+ngf-model-invalid="errorFile">
+
+<i ng-show="jobs.file.$error.required">*required</i><br>
+
+<i ng-show="jobs.file.$error.maxSize">File too large
+
+{{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+    </div>
+
+
+     
+
+     <div class="formElement">
+    <label for="name">Text</label>
+            <input ng-model="picText" type="text" placeholder="Text" required>
+    </div>
+
+
+      <div class="formElement">
+    <label for="name">Materials Used</label>
+            <input ng-model="MaterialsUsed" type="text" placeholder="Materials Used" required>
+    </div>
+
+
+    <div class="formElement">
+    <label for="name">Hours</label>
+            <input ng-model="JobHours" type="text" placeholder="Hours" required>
+    </div>
+ 
+  <button type="submit" class="button" ng-click="OnClickUploadJob()">Submit</button>
+    
+
+	</section>
+</script>
+<!-- ******************************************************************************************* -->
+
+
+<script type="text/ng-template" id="photos.html">
+    <div id="photos" ng-controller="PhotosCtrl" ng-class="{open:state=='open', close:state=='close'}">
+        <div class="job-details">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="name">Project Job</label>
+                    <select ng-options="s.ID as s.Name for s in Jobs" ng-model="ModJobs" ng-change="OnJobChange()">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" ng-show="!IsJobSelected">
+                <div class="col-sm-12 text-center">
+                    <div class="alert alert-info fade in"><strong>Info!</strong> Please select project job.</div>
+                </div>
+            </div>
+            <div class="row" ng-show="IsJobSelected">
+                <div class="col-sm-12">
+                    <label>Date</label>
+		            <input ng-model="start" type="text" class="datetimepicker" placeholder="Pick a Date" required>
+		            <label>Description</label>
+		            <textarea placeholder="Enter Description here"  ng-model="Description"></textarea>
+		            <label for="Status">Photo</label>
+	                <div class="custom_browse">
+		                <div class="fileUpload">
+			        
+                             <input type="file" ngf-select ng-files="getTheFiles($files)" name="file" accept="image/*" ngf-max-size="2MB" multiple required ngf-model-invalid="errorFile">
+			                <!--<span>Choose Files</span><input id="uploadBtn" type="file" ngf-select ng-model="picFile" name="file" multiple accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile" class="upload" />-->
+		                </div>
+		               <!-- <input id="uploadFile" placeholder="Choose File" disabled="disabled" />-->
+
+                        <i ng-show="jobs.file.$error.required">*required</i><br>
+                        <i ng-show="jobs.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+	                </div>			
+		            <div class="row">
+			            <div class="col-xs-6"><a class="cancel right" ng-click="goTo('')">Cancel</a></div>
+			            <div class="col-xs-6"><button type="submit" class="update" ng-click="NewUploadPhotos()">Update</button></div>
+		            </div>
+                </div>
+            </div>
+        <div>
+    </div>
+</script>
+
+
+<!-- ******************************************************************************************* -->
+
+
+<script type="text/ng-template" id="reorder.html">
+    <div id="reorder" ng-controller="ReorderCtrl" class="tab-pane" ng-class="{open:state=='open', close:state=='close'}">
+        <div class="job-details">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="name">Project Job</label>
+                    <select ng-options="s.ID as s.Name for s in Jobs" ng-model="ModJobs" ng-change="OnJobChange()">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" ng-show="!IsJobSelected">
+                <div class="col-sm-12 text-center">
+                    <div class="alert alert-info fade in"><strong>Info!</strong> Please select project job.</div>
+                </div>
+            </div>
+            <div class="row" ng-show="IsJobSelected">
+                <div class="col-sm-12">
+                    <label>Reorder</label>
+	                <textarea ng-model="Reorder" placeholder="Enter Reorder here"></textarea>
+	                <p class="error">Please fill out this field.</p>
+	                <div class="row">
+		                <div class="col-xs-6"><a class="cancel right" ng-click="goTo('')">Cancel</a></div>
+		                <div class="col-xs-6"><button type="submit" class="update" ng-click="OnClickReorder()">Update</button></div>
+	                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+
+<!-- ******************************************************************************************* -->

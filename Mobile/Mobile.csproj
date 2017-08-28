@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DF69243E-9BB8-48E8-A3BE-ADB23DDD4212}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mobile</RootNamespace>
+    <AssemblyName>Mobile</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Warpfusion.A4PP.Objects">
+      <HintPath>..\WebUI\Bin\Warpfusion.A4PP.Objects.dll</HintPath>
+    </Reference>
+    <Reference Include="Warpfusion.Shared.Utilities">
+      <HintPath>..\WebUI\Bin\Warpfusion.Shared.Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Mobile.dll" />
+    <Content Include="bin\Mobile.dll.config" />
+    <Content Include="bin\Mobile.pdb" />
+    <Content Include="bin\Warpfusion.A4PP.Objects.xml" />
+    <Content Include="Dashboard\master.txt" />
+    <Content Include="Dashboard\messages.txt" />
+    <Content Include="Dashboard\MobileService.asmx" />
+    <Content Include="Dashboard\style.css" />
+    <Content Include="Dashboard\templates.html" />
+    <Content Include="font\fontawesome-webfont.eot" />
+    <Content Include="font\fontawesome-webfont.ttf" />
+    <Content Include="font\fontawesome-webfont.woff" />
+    <Content Include="font\FontAwesome.otf" />
+    <Content Include="font\glyphicons-halflings-regular.svg" />
+    <Content Include="font\HVD Fonts - BrandonText-Bold-webfont.svg" />
+    <Content Include="font\HVD Fonts - BrandonText-Light-webfont.svg" />
+    <Content Include="font\HVD Fonts - BrandonText-Medium-webfont.svg" />
+    <Content Include="font\MyriadPro-Regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\1.png" />
+    <Content Include="images\10c400cacc201848d\20140606074908.jpg" />
+    <Content Include="images\10c400cacc201848d\20170415165654.jpg" />
+    <Content Include="images\10c400cacc201848d\20170415170244.jpg" />
+    <Content Include="images\10c400cacc201848d\20170415170817.jpg" />
+    <Content Include="images\10c400cacc201848d\20170415170819.jpg" />
+    <Content Include="images\2.png" />
+    <Content Include="images\20170415164138.jpg" />
+    <Content Include="images\26b4c208ebb5d1b66\20140606074908.jpg" />
+    <Content Include="images\2aa.png" />
+    <Content Include="images\3.png" />
+    <Content Include="images\4.png" />
+    <Content Include="images\arrow-jobs.png" />
+    <Content Include="images\arrow-reorder.png" />
+    <Content Include="images\arrow.png" />
+    <Content Include="images\calender-icon.png" />
+    <Content Include="images\edit-icon.png" />
+    <Content Include="images\envelopeicon.png" />
+    <Content Include="images\img-icon.png" />
+    <Content Include="images\job-ficon-h1.png" />
+    <Content Include="images\job-ficon-h2.png" />
+    <Content Include="images\job-ficon-h3.png" />
+    <Content Include="images\job-ficon-h4.png" />
+    <Content Include="images\job-ficon-h5.png" />
+    <Content Include="images\job-ficon1.png" />
+    <Content Include="images\job-ficon2.png" />
+    <Content Include="images\job-ficon3.png" />
+    <Content Include="images\job-ficon4.png" />
+    <Content Include="images\job-ficon5.png" />
+    <Content Include="images\jobicon.png" />
+    <Content Include="images\lines-reorder.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logouticon.png" />
+    <Content Include="images\msg2.png" />
+    <Content Include="images\newmsgicon.png" />
+    <Content Include="images\reorder.png" />
+    <Content Include="images\select-arrow.png" />
+    <Content Include="images\timesheet.png" />
+    <Content Include="images\user1.png" />
+    <Content Include="images\usericon.png" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="Dashboard\Templates.ashx" />
+    <Content Include="Dashboard\master.ashx" />
+    <Content Include="Dashboard\master.json" />
+    <Content Include="Dashboard\messages.ashx" />
+    <Content Include="Dashboard\messages.json" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Styles\app.css" />
+    <Content Include="Styles\bootstrap-theme.css.map" />
+    <Content Include="Styles\bootstrap.css.map" />
+    <Content Include="font\glyphicons-halflings-regular.eot" />
+    <Content Include="font\glyphicons-halflings-regular.ttf" />
+    <Content Include="font\glyphicons-halflings-regular.woff" />
+    <Content Include="font\HVD Fonts - BrandonText-Bold-webfont.eot" />
+    <Content Include="font\HVD Fonts - BrandonText-Bold-webfont.ttf" />
+    <Content Include="font\HVD Fonts - BrandonText-Bold-webfont.woff" />
+    <Content Include="font\HVD Fonts - BrandonText-Bold-webfont.woff2" />
+    <Content Include="font\HVD Fonts - BrandonText-Light-webfont.eot" />
+    <Content Include="font\HVD Fonts - BrandonText-Light-webfont.ttf" />
+    <Content Include="font\HVD Fonts - BrandonText-Light-webfont.woff" />
+    <Content Include="font\HVD Fonts - BrandonText-Light-webfont.woff2" />
+    <Content Include="font\HVD Fonts - BrandonText-Medium-webfont.eot" />
+    <Content Include="font\HVD Fonts - BrandonText-Medium-webfont.ttf" />
+    <Content Include="font\HVD Fonts - BrandonText-Medium-webfont.woff" />
+    <Content Include="font\HVD Fonts - BrandonText-Medium-webfont.woff2" />
+    <Content Include="font\MyriadPro-Regular.eot" />
+    <Content Include="font\MyriadPro-Regular.otf" />
+    <Content Include="font\MyriadPro-Regular.ttf" />
+    <Content Include="font\MyriadPro-Regular.woff" />
+    <Content Include="Dashboard\PhotoUploadHandler.ashx" />
+    <None Include="Properties\PublishProfiles\TestProfile.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\Global.asax.vb" />
+    <Content Include="App_Code\MobileService.vb">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="Dashboard\Default.aspx" />
+    <Content Include="Dashboard\Default.aspx.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Default.aspx" />
+    <Content Include="Default.aspx.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="DefaultMasterPage.master.vb" />
+    <Content Include="font\fontawesome-webfont.svg" />
+    <Content Include="index.html" />
+    <Content Include="Login.aspx" />
+    <Content Include="Login.aspx.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="MobileService.asmx" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\application.js" />
+    <Content Include="Scripts\backup\mobiscroll.js" />
+    <Content Include="Styles\bootstrap-theme.css" />
+    <Content Include="Styles\bootstrap-theme.min.css" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\custom.css" />
+    <Content Include="Scripts\html5.js" />
+    <Content Include="DefaultMasterPage.master" />
+    <Content Include="messages.json" />
+    <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\MobileService.js" />
+    <Content Include="Scripts\mobiscroll.js" />
+    <Content Include="style.css" />
+    <Content Include="Styles\base.css" />
+    <Content Include="Styles\job-dummy.jpg" />
+    <Content Include="Styles\jquery-ui.css" />
+    <Content Include="Styles\layout.css" />
+    <Content Include="Styles\mobiscroll.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Styles\skeleton.css" />
+    <Content Include="Styles\style-old.css" />
+    <Content Include="Styles\style.css" />
+    <Content Include="SystemRequirements.aspx" />
+    <Content Include="SystemRequirements.aspx.vb" />
+    <Content Include="templates.html" />
+    <Content Include="Test.aspx" />
+    <Content Include="Timesheet\CheckIn.aspx" />
+    <Content Include="Timesheet\CheckIn.aspx.vb" />
+    <Content Include="Timesheet\CheckIn_DDL.aspx" />
+    <Content Include="Timesheet\CheckIn_DDL.aspx.vb" />
+    <Content Include="Timesheet\CheckIn_SimpleDDL.aspx" />
+    <Content Include="Timesheet\CheckIn_SimpleDDL.aspx.vb" />
+    <Content Include="Timesheet\Default.aspx" />
+    <Content Include="Timesheet\Default.aspx.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Timesheet\MasterPage.master.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Timesheet\MasterPage.master" />
+    <Content Include="Templates.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Dashboard\PhotoUploadHandler.ashx.cs">
+      <DependentUpon>PhotoUploadHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Services.vbproj">
+      <Project>{eaf8f094-9615-48ba-af07-673e14812f21}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53994</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53994/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
