@@ -1193,8 +1193,8 @@ App.controller('PhotosCtrl', function ($scope, $routeParams, $rootScope, $timeou
                 data: $scope.formdata,
                 contentType: false,
                 processData: false,
-                async: false,
-                success: function (result) { $(".overlay").hide(); },
+                //async: false,
+                success: function (result) { $(".overlay").hide(); $scope.goTo(''); },
                 error: function (jqXHR, exception) {
                     $(".overlay").hide();
                     var msg = '';
@@ -1216,7 +1216,6 @@ App.controller('PhotosCtrl', function ($scope, $routeParams, $rootScope, $timeou
                     $('#post').html(msg);
                 }
             });
-
             evt.preventDefault();
         }
     }
